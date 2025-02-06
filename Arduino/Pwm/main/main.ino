@@ -22,10 +22,12 @@ void loop() {
       String receivedData = Serial.readStringUntil('\n');
       receivedData.trim();
       int index = receivedData.indexOf(':');
-      String pwmStr = receivedData.substring(index + 1);
+      String pinStr = receivedData.substring(0, index);
       int pin = pinStr.toInt();
+      String pwmStr = receivedData.substring(index + 1);
       int pwm_value = pwmStr.toInt();
       analogWrite(pin, pwm_value);
+      
     }
 
 } // end loop

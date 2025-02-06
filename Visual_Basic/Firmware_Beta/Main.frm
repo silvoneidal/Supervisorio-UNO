@@ -721,7 +721,7 @@ Private Sub lstInput_Click()
                          "}"
                          
     ' Envia comando via serial para o arduino
-    MSComm1.Output = selectedItem
+    MSComm1.Output = selectedItem & vbLf
     
 End Sub
 
@@ -771,19 +771,19 @@ Private Sub lstPwm_Click()
     Dim pin As Integer
     pin = CInt(Mid(selectedItem, 1, 2))
     
-    txtInformacao.Text = "if (Serial.available() > 0) {" & vbCrLf & _
+    txtInformacao.Text = "if (Serial.available()) {" & vbCrLf & _
                          "  String receivedData = Serial.readStringUntil('\n');" & vbCrLf & _
                          "  receivedData.trim();" & vbCrLf & _
                          "  int index = receivedData.indexOf(':');" & vbCrLf & _
-                         "  String pwmStr = receivedData.substring(index + 1);" & vbCrLf & _
+                         "  String pinStr = receivedData.substring(0, index);" & vbCrLf & _
                          "  int pin = pinStr.toInt();" & vbCrLf & _
+                         "  String pwmStr = receivedData.substring(index + 1);" & vbCrLf & _
                          "  int pwm_value = pwmStr.toInt();" & vbCrLf & _
                          "  analogWrite(pin, pwm_value);" & vbCrLf & _
                          "}"
                          
     ' Envia comando via serial para o arduino
-    MSComm1.Output = selectedItem
-    Debug.Print selectedItem
+    MSComm1.Output = selectedItem & vbLf
 
 End Sub
 
@@ -816,8 +816,7 @@ Private Sub Form_KeyPress(KeyAscii As Integer)
         lstPwm.List(lstPwm.ListIndex) = updatedItem
         
         ' Envia comando via serial para o arduino
-        MSComm1.Output = Mid(selectedItem, 1, 3) & pwm_value
-        Debug.Print Mid(selectedItem, 1, 3) & pwm_value
+        MSComm1.Output = Mid(selectedItem, 1, 3) & pwm_value & vbLf
     End If
     
 End Sub
@@ -962,38 +961,6 @@ Private Sub deleteDuplicados()
             End If
         Next
     Next
-    
-End Sub
-
-Private Sub Timer1_Timer()
-'    If Mid(buffer, 1, 1) = "#" Then
-'        ' Input
-'        If Mid(buffer, 2, 1) = "1" Then
-'            frmInput.Enabled = True
-'            frmOutput.Enabled = False
-'            frmAnalog.Enabled = False
-'            frmPwm.Enabled = False
-'        ' Output
-'        ElseIf Mid(buffer, 2, 1) = "2" Then
-'            frmInput.Enabled = False
-'            frmOutput.Enabled = True
-'            frmAnalog.Enabled = False
-'            frmPwm.Enabled = False
-'        ' Analog
-'        ElseIf Mid(buffer, 2, 1) = "3" Then
-'            frmInput.Enabled = False
-'            frmOutput.Enabled = False
-'            frmAnalog.Enabled = True
-'            frmPwm.Enabled = False
-'        ' Pwm
-'        ElseIf Mid(buffer, 2, 1) = "4" Then
-'            frmInput.Enabled = False
-'            frmOutput.Enabled = False
-'            frmAnalog.Enabled = False
-'            frmPwm.Enabled = True
-'        End If
-'        buffer = Empty
-'    End If
     
 End Sub
 
