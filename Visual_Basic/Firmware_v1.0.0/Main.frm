@@ -54,11 +54,12 @@ Begin VB.Form Main
          EndProperty
          Height          =   345
          Left            =   120
-         TabIndex        =   29
+         TabIndex        =   28
          Top             =   5640
          Width           =   3015
       End
       Begin VB.TextBox txtInformacao 
+         BackColor       =   &H00000000&
          BeginProperty Font 
             Name            =   "Courier New"
             Size            =   8.25
@@ -68,19 +69,20 @@ Begin VB.Form Main
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
+         ForeColor       =   &H00FFFFFF&
          Height          =   1935
          Left            =   120
          Locked          =   -1  'True
          MultiLine       =   -1  'True
          ScrollBars      =   2  'Vertical
-         TabIndex        =   28
+         TabIndex        =   27
          Top             =   3600
          Width           =   6135
       End
       Begin VB.Frame Frame2 
          Height          =   3855
          Left            =   12120
-         TabIndex        =   21
+         TabIndex        =   20
          Top             =   120
          Width           =   1455
          Begin VB.ComboBox cboPinos 
@@ -95,7 +97,7 @@ Begin VB.Form Main
             EndProperty
             Height          =   345
             Left            =   120
-            TabIndex        =   27
+            TabIndex        =   26
             Text            =   "Combo1"
             Top             =   2280
             Width           =   1215
@@ -113,7 +115,7 @@ Begin VB.Form Main
             EndProperty
             Height          =   375
             Left            =   120
-            TabIndex        =   26
+            TabIndex        =   25
             Top             =   240
             Width           =   1215
          End
@@ -130,7 +132,7 @@ Begin VB.Form Main
             EndProperty
             Height          =   375
             Left            =   120
-            TabIndex        =   25
+            TabIndex        =   24
             Top             =   720
             Width           =   1215
          End
@@ -147,7 +149,7 @@ Begin VB.Form Main
             EndProperty
             Height          =   375
             Left            =   120
-            TabIndex        =   24
+            TabIndex        =   23
             Top             =   1200
             Width           =   1215
          End
@@ -164,7 +166,7 @@ Begin VB.Form Main
             EndProperty
             Height          =   375
             Left            =   120
-            TabIndex        =   23
+            TabIndex        =   22
             Top             =   1680
             Width           =   1215
          End
@@ -181,7 +183,7 @@ Begin VB.Form Main
             EndProperty
             Height          =   465
             Left            =   120
-            TabIndex        =   22
+            TabIndex        =   21
             Top             =   2760
             Width           =   1215
          End
@@ -199,7 +201,7 @@ Begin VB.Form Main
          EndProperty
          Height          =   345
          Left            =   3240
-         TabIndex        =   20
+         TabIndex        =   19
          Top             =   5640
          Width           =   3015
       End
@@ -216,44 +218,10 @@ Begin VB.Form Main
          EndProperty
          Height          =   3225
          Left            =   4800
-         TabIndex        =   15
-         Top             =   240
-         Width           =   1455
-         Begin VB.ListBox lstPwm 
-            Appearance      =   0  'Flat
-            BeginProperty Font 
-               Name            =   "Courier New"
-               Size            =   9
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   2730
-            Left            =   120
-            TabIndex        =   19
-            Top             =   360
-            Width           =   1215
-         End
-      End
-      Begin VB.Frame frmAnalog 
-         Caption         =   "Analog"
-         BeginProperty Font 
-            Name            =   "Courier New"
-            Size            =   9
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   3225
-         Left            =   3240
          TabIndex        =   14
          Top             =   240
          Width           =   1455
-         Begin VB.ListBox lstAnalog 
+         Begin VB.ListBox lstPwm 
             Appearance      =   0  'Flat
             BeginProperty Font 
                Name            =   "Courier New"
@@ -271,8 +239,8 @@ Begin VB.Form Main
             Width           =   1215
          End
       End
-      Begin VB.Frame frmOutput 
-         Caption         =   "Output"
+      Begin VB.Frame frmAnalog 
+         Caption         =   "Analog"
          BeginProperty Font 
             Name            =   "Courier New"
             Size            =   9
@@ -283,11 +251,11 @@ Begin VB.Form Main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   3225
-         Left            =   1680
+         Left            =   3240
          TabIndex        =   13
          Top             =   240
          Width           =   1455
-         Begin VB.ListBox lstOutput 
+         Begin VB.ListBox lstAnalog 
             Appearance      =   0  'Flat
             BeginProperty Font 
                Name            =   "Courier New"
@@ -305,6 +273,40 @@ Begin VB.Form Main
             Width           =   1215
          End
       End
+      Begin VB.Frame frmOutput 
+         Caption         =   "Output"
+         BeginProperty Font 
+            Name            =   "Courier New"
+            Size            =   9
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   3225
+         Left            =   1680
+         TabIndex        =   12
+         Top             =   240
+         Width           =   1455
+         Begin VB.ListBox lstOutput 
+            Appearance      =   0  'Flat
+            BeginProperty Font 
+               Name            =   "Courier New"
+               Size            =   9
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   2730
+            Left            =   120
+            TabIndex        =   16
+            Top             =   360
+            Width           =   1215
+         End
+      End
       Begin VB.Frame frmInput 
          Caption         =   "Input"
          BeginProperty Font 
@@ -318,7 +320,7 @@ Begin VB.Form Main
          EndProperty
          Height          =   3225
          Left            =   120
-         TabIndex        =   12
+         TabIndex        =   11
          Top             =   240
          Width           =   1455
          Begin VB.ListBox lstInput 
@@ -334,7 +336,7 @@ Begin VB.Form Main
             EndProperty
             Height          =   2730
             Left            =   120
-            TabIndex        =   16
+            TabIndex        =   15
             Top             =   360
             Width           =   1215
          End
@@ -501,22 +503,6 @@ Begin VB.Form Main
          Width           =   6135
       End
    End
-   Begin VB.TextBox txtData 
-      BeginProperty Font 
-         Name            =   "Courier New"
-         Size            =   9
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   330
-      Left            =   120
-      TabIndex        =   11
-      Top             =   6720
-      Width           =   6375
-   End
    Begin VB.Shape shpConnect 
       BackColor       =   &H000000FF&
       BackStyle       =   1  'Opaque
@@ -587,7 +573,6 @@ On Error GoTo Erro
     frmOutput.Enabled = True
     frmAnalog.Enabled = True
     frmPwm.Enabled = True
-    txtData.Visible = False
     
     ' Ajustes inciais
     shpConnect.BackColor = vbRed
@@ -683,12 +668,10 @@ Erro:
 End Sub
 
 Private Sub lstInput_Click()
-    ' Limpara a seleção dos demais listbox
-    'ClearOtherListBoxesSelection "lstInput"
-    
     ' Obtém o item selecionado
     Dim selectedItem As String
     selectedItem = lstInput.List(lstInput.ListIndex)
+    If selectedItem = Empty Then Exit Sub
     
     ' Verifica o último caractere do item
     Dim state As String
@@ -723,28 +706,30 @@ Private Sub lstInput_Click()
     ' Envia comando via serial para o arduino
     MSComm1.Output = selectedItem & vbLf
     
+    ' Limpara a seleção dos demais listbox
+    ClearOtherListBoxesSelection "lstInput"
+    
 End Sub
 
 Private Sub lstOutput_Click()
-    ' Limpara a seleção dos demais listbox
-    'ClearOtherListBoxesSelection "lstOutput"
-    
     ' Obtém o item selecionado
     Dim selectedItem As String
     selectedItem = lstOutput.List(lstOutput.ListIndex)
+    If selectedItem = Empty Then Exit Sub
 
     ' Atualiza informação de função para o arduino
     txtInformacao.Text = "Serial.println(""" & Left(selectedItem, 3) & "0""); // 0 ou 1"
     
+    ' Limpara a seleção dos demais listbox
+    ClearOtherListBoxesSelection "lstOutput"
+    
 End Sub
 
 Private Sub lstAnalog_Click()
-    ' Limpara a seleção dos demais listbox
-    'ClearOtherListBoxesSelection "lstAnalog"
-    
     ' Obtém o item selecionado
     Dim selectedItem As String
     selectedItem = lstAnalog.List(lstAnalog.ListIndex)
+    If selectedItem = Empty Then Exit Sub
     
     Dim pin As String
     pin = Mid(selectedItem, 1, 2)
@@ -752,16 +737,17 @@ Private Sub lstAnalog_Click()
     ' Atualiza informação de função para o arduino
     txtInformacao.Text = "int value_analog = analogRead(" & pin & ");" & vbCrLf & _
                          "Serial.println(""" & pin & ":"" + String(value_analog);"
+                         
+    ' Limpara a seleção dos demais listbox
+    ClearOtherListBoxesSelection "lstAnalog"
 
 End Sub
 
 Private Sub lstPwm_Click()
-    ' Limpara a seleção dos demais listbox
-    'ClearOtherListBoxesSelection "lstPwm"
-    
     ' Obtém o item selecionado
     Dim selectedItem As String
     selectedItem = lstPwm.List(lstPwm.ListIndex)
+    If selectedItem = Empty Then Exit Sub
     
     ' Verifica o último caractere do item selecionado
     Dim updatedItem As String
@@ -784,6 +770,9 @@ Private Sub lstPwm_Click()
                          
     ' Envia comando via serial para o arduino
     MSComm1.Output = selectedItem & vbLf
+    
+    ' Limpara a seleção dos demais listbox
+    ClearOtherListBoxesSelection "lstPwm"
 
 End Sub
 
@@ -1085,37 +1074,4 @@ End Sub
 'endTime = Timer
 'elapsedTime = endTime - startTime
 'If elapsedTime > 2 Then txtData = Empty ' limpa txtData, pois houve algum erro.
-
-
-' Função para conversão de string para decimal
-'------------------------------------------------------------------------------------------
-'Private Function StringToDec(s As String) As String
-'    Dim result As String
-'
-'    For i = 1 To Len(s)
-'        result = result & " " & Format(Asc(Mid(s, i, 1)), "000")
-'    Next i
-'
-'    StringToDec = result
-'
-'End Function
-
-
-' Função para busca de um caracter especifico
-'------------------------------------------------------------------------------------------
-'Private Function SearchChar(search As String)
-'    Dim strMyString As String
-'    Dim intPosition As Integer
-'
-'    intPosition = InStr(1, search, "#")
-'
-'    If intPosition > 0 Then
-'        ' Encontrado
-'        SearchChar = True
-'    Else
-'        ' Não encontrado
-'        SearchChar = False
-'    End If
-'
-'End Function
 
