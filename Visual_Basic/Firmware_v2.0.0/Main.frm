@@ -471,7 +471,7 @@ Begin VB.Form Main
          Caption         =   "Enviar"
          BeginProperty Font 
             Name            =   "Courier New"
-            Size            =   8.25
+            Size            =   9
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -600,21 +600,11 @@ On Error GoTo Erro
     lstVariable.ToolTipText = "Selecione um item para verificar a função á ser programada, e receber o valor atual do arduino."
     txtInformacao.ToolTipText = "Exemplo de função a ser programada no arduino, click no botão ""Copiar"" para área de transferência."
     
-    ' Comandos inicialmente desabilitados
-    
+    ' ' Ajustes inciais
     cmdConnectPort.Enabled = True
     frmTerminal.Visible = False
     frmInterface.Visible = True
-    frmTerminal.Enabled = False
-    frmInterface.Enabled = False
-    frmInput.Enabled = True
-    frmOutput.Enabled = True
-    frmAnalog.Enabled = True
-    frmPwm.Enabled = True
-    
-    ' Ajustes inciais
     shpConnect.BackColor = vbRed
-    Call cmdReset_Click
     
     ' Inicia com reset de valores
     Call cmdReset_Click
@@ -664,8 +654,6 @@ On Error GoTo Erro
         MSComm1.DTREnable = True
         MSComm1.RTSEnable = True
         MSComm1.PortOpen = True
-        frmInterface.Enabled = True
-        frmTerminal.Enabled = True
         cboCommPort.Enabled = False
         cboBaudRate.Enabled = False
         cmdScanPort.Enabled = False
@@ -675,8 +663,6 @@ On Error GoTo Erro
     Else
         cmdConnectPort.Caption = "Conectar"
         MSComm1.PortOpen = False
-        frmInterface.Enabled = False
-        frmTerminal.Enabled = False
         cboCommPort.Enabled = True
         cboBaudRate.Enabled = True
         cmdScanPort.Enabled = True
@@ -742,7 +728,9 @@ Private Sub lstInput_Click()
                          "}"
                          
     ' Envia comando via serial para o arduino
-    MSComm1.Output = selectedItem & vbLf
+    If MSComm1.PortOpen = True Then
+        MSComm1.Output = selectedItem & vbLf
+    End If
     
     ' Limpara a seleção dos demais listbox
     ClearOtherListBoxesSelection "lstInput"
@@ -807,7 +795,9 @@ Private Sub lstPwm_Click()
                          "}"
                          
     ' Envia comando via serial para o arduino
-    MSComm1.Output = selectedItem & vbLf
+    If MSComm1.PortOpen = True Then
+        MSComm1.Output = selectedItem & vbLf
+    End If
     
     ' Limpara a seleção dos demais listbox
     ClearOtherListBoxesSelection "lstPwm"
@@ -827,7 +817,9 @@ Private Sub lstVariable_Click()
     txtInformacao.Text = "Serial.println(""" & var & """ + String(value_variable);"
                          
     ' Envia comando via serial para o arduino
-    MSComm1.Output = selectedItem & vbLf
+    If MSComm1.PortOpen = True Then
+        MSComm1.Output = selectedItem & vbLf
+    End If
     
     ' Limpara a seleção dos demais listbox
     ClearOtherListBoxesSelection "lstVariable"
@@ -910,7 +902,7 @@ On Error GoTo Erro
             Dim data As String
             data = MSComm1.Input
             buffer = buffer + data
-            Debug.Print buffer
+            'Debug.Print buffer
             
             ' Atualiza valores de Output e Analog
             If Mid(buffer, 3, 1) = ":" Then
@@ -925,6 +917,7 @@ On Error GoTo Erro
             
             ' Limpa o buffer se receber uma nova linha
             If Right(buffer, 1) = vbLf Then
+                Debug.Print buffer
                 buffer = Empty
             End If
             
@@ -1097,15 +1090,15 @@ Private Sub cmdReset_Click()
     ' Lista de Output
     For i = 2 To 13
         If i < 10 Then
-            lstOutput.AddItem "0" & i & ":0"
+            lstOutput.AddItem "0" & i & ":"
         Else
-            lstOutput.AddItem i & ":0"
+            lstOutput.AddItem i & ":"
         End If
     Next i
     
     ' Lista de Analog
     For i = 0 To 5
-        lstAnalog.AddItem "A" & i & ":0"
+        lstAnalog.AddItem "A" & i & ":"
     Next i
     
     ' Lista Pwm
