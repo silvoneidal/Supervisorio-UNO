@@ -5,12 +5,12 @@ Begin VB.Form Main
    ClientHeight    =   7185
    ClientLeft      =   1350
    ClientTop       =   2970
-   ClientWidth     =   6645
+   ClientWidth     =   8190
    Icon            =   "Main.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    ScaleHeight     =   7185
-   ScaleWidth      =   6645
+   ScaleWidth      =   8190
    StartUpPosition =   2  'CenterScreen
    Begin VB.Timer Timer1 
       Interval        =   500
@@ -40,7 +40,41 @@ Begin VB.Form Main
       Left            =   120
       TabIndex        =   10
       Top             =   840
-      Width           =   6375
+      Width           =   7935
+      Begin VB.Frame frmVariable 
+         Caption         =   "Variable <"
+         BeginProperty Font 
+            Name            =   "Courier New"
+            Size            =   9
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   3225
+         Left            =   6360
+         TabIndex        =   29
+         Top             =   240
+         Width           =   1455
+         Begin VB.ListBox lstVariable 
+            Appearance      =   0  'Flat
+            BeginProperty Font 
+               Name            =   "Courier New"
+               Size            =   9
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   2730
+            Left            =   120
+            TabIndex        =   30
+            Top             =   360
+            Width           =   1215
+         End
+      End
       Begin VB.CommandButton cmdCopy 
          Caption         =   "Copiar "
          BeginProperty Font 
@@ -56,7 +90,7 @@ Begin VB.Form Main
          Left            =   120
          TabIndex        =   28
          Top             =   5640
-         Width           =   3015
+         Width           =   3735
       End
       Begin VB.TextBox txtInformacao 
          BackColor       =   &H00000000&
@@ -69,7 +103,7 @@ Begin VB.Form Main
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00FFFFFF&
+         ForeColor       =   &H0000FF00&
          Height          =   1935
          Left            =   120
          Locked          =   -1  'True
@@ -77,7 +111,7 @@ Begin VB.Form Main
          ScrollBars      =   2  'Vertical
          TabIndex        =   27
          Top             =   3600
-         Width           =   6135
+         Width           =   7695
       End
       Begin VB.Frame Frame2 
          Height          =   3855
@@ -200,10 +234,10 @@ Begin VB.Form Main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   345
-         Left            =   3240
+         Left            =   4080
          TabIndex        =   19
          Top             =   5640
-         Width           =   3015
+         Width           =   3735
       End
       Begin VB.Frame frmPwm 
          Caption         =   "Pwm >"
@@ -347,7 +381,7 @@ Begin VB.Form Main
       Left            =   120
       TabIndex        =   5
       Top             =   0
-      Width           =   6375
+      Width           =   7935
       Begin VB.CommandButton cmdScanPort 
          Caption         =   "Scanear"
          BeginProperty Font 
@@ -360,10 +394,10 @@ Begin VB.Form Main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   350
-         Left            =   3000
+         Left            =   3120
          TabIndex        =   9
          Top             =   240
-         Width           =   1575
+         Width           =   2295
       End
       Begin VB.CommandButton cmdConnectPort 
          Caption         =   "Conectar"
@@ -377,10 +411,10 @@ Begin VB.Form Main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   350
-         Left            =   4680
+         Left            =   5520
          TabIndex        =   8
          Top             =   240
-         Width           =   1575
+         Width           =   2295
       End
       Begin VB.ComboBox cboBaudRate 
          BeginProperty Font 
@@ -432,7 +466,7 @@ Begin VB.Form Main
       Left            =   120
       TabIndex        =   0
       Top             =   840
-      Width           =   6375
+      Width           =   7935
       Begin VB.CommandButton cmdSendData 
          Caption         =   "Enviar"
          BeginProperty Font 
@@ -445,10 +479,10 @@ Begin VB.Form Main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   350
-         Left            =   3000
+         Left            =   3840
          TabIndex        =   4
          Top             =   5640
-         Width           =   1575
+         Width           =   1935
       End
       Begin VB.ComboBox cboSendData 
          BeginProperty Font 
@@ -464,7 +498,7 @@ Begin VB.Form Main
          Left            =   120
          TabIndex        =   3
          Top             =   5640
-         Width           =   2775
+         Width           =   3615
       End
       Begin VB.CommandButton cmdClearTerminal 
          Caption         =   "Limpar"
@@ -478,10 +512,10 @@ Begin VB.Form Main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   350
-         Left            =   4680
+         Left            =   5880
          TabIndex        =   2
          Top             =   5640
-         Width           =   1575
+         Width           =   1935
       End
       Begin VB.TextBox txtTerminal 
          BackColor       =   &H00000000&
@@ -494,7 +528,7 @@ Begin VB.Form Main
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00FFFFFF&
+         ForeColor       =   &H0000FF00&
          Height          =   5295
          Left            =   120
          Locked          =   -1  'True
@@ -502,7 +536,7 @@ Begin VB.Form Main
          ScrollBars      =   2  'Vertical
          TabIndex        =   1
          Top             =   240
-         Width           =   6135
+         Width           =   7695
       End
    End
    Begin VB.Shape shpConnect 
@@ -512,7 +546,7 @@ Begin VB.Form Main
       Height          =   255
       Left            =   -120
       Top             =   7080
-      Width           =   6855
+      Width           =   8415
    End
    Begin VB.Menu mTerminal 
       Caption         =   "Terminal"
@@ -563,6 +597,7 @@ On Error GoTo Erro
     lstOutput.ToolTipText = "Selecione um item para verificar a função á ser programada, e receber o valor atual do arduino."
     lstAnalog.ToolTipText = "Selecione um item para verificar a função á ser programada, e receber o valor atual do arduino."
     lstPwm.ToolTipText = "Selecione um item para verificar a função á ser programada, e click em + ou - para alterar o valor a ser enviado para o arduino."
+    lstVariable.ToolTipText = "Selecione um item para verificar a função á ser programada, e receber o valor atual do arduino."
     txtInformacao.ToolTipText = "Exemplo de função a ser programada no arduino, click no botão ""Copiar"" para área de transferência."
     
     ' Comandos inicialmente desabilitados
@@ -779,6 +814,26 @@ Private Sub lstPwm_Click()
 
 End Sub
 
+Private Sub lstVariable_Click()
+    ' Obtém o item selecionado
+    Dim selectedItem As String
+    selectedItem = lstVariable.List(lstVariable.ListIndex)
+    If selectedItem = Empty Then Exit Sub
+    
+    Dim var As String
+    var = Mid(selectedItem, 1, 3)
+    
+    ' Atualiza informação de função para o arduino
+    txtInformacao.Text = "Serial.println(""" & var & """ + String(value_variable);"
+                         
+    ' Envia comando via serial para o arduino
+    MSComm1.Output = selectedItem & vbLf
+    
+    ' Limpara a seleção dos demais listbox
+    ClearOtherListBoxesSelection "lstVariable"
+
+End Sub
+
 Private Sub Form_KeyPress(KeyAscii As Integer)
     ' Verifica se o ListBox PWM está com o foco
     If Me.ActiveControl Is lstPwm Then
@@ -819,18 +874,27 @@ Private Sub ClearOtherListBoxesSelection(CurrentListBox As String)
             lstOutput.ListIndex = -1
             lstAnalog.ListIndex = -1
             lstPwm.ListIndex = -1
+            lstVariable.ListIndex = -1
         Case "lstOutput"
             lstInput.ListIndex = -1
             lstAnalog.ListIndex = -1
             lstPwm.ListIndex = -1
+            lstVariable.ListIndex = -1
         Case "lstAnalog"
             lstInput.ListIndex = -1
             lstOutput.ListIndex = -1
             lstPwm.ListIndex = -1
+            lstVariable.ListIndex = -1
         Case "lstPwm"
             lstInput.ListIndex = -1
             lstOutput.ListIndex = -1
             lstAnalog.ListIndex = -1
+            lstVariable.ListIndex = -1
+        Case "lstVariable"
+            lstInput.ListIndex = -1
+            lstOutput.ListIndex = -1
+            lstAnalog.ListIndex = -1
+            lstPwm.ListIndex = -1
     End Select
 End Sub
 
@@ -850,7 +914,9 @@ On Error GoTo Erro
             
             ' Atualiza valores de Output e Analog
             If Mid(buffer, 3, 1) = ":" Then
-                If Mid(buffer, 1, 1) = "A" Then
+                If Mid(buffer, 1, 1) = "V" Then
+                    Call updateVariable(Left(buffer, 10)) ' Variable
+                ElseIf Mid(buffer, 1, 1) = "A" Then
                     Call updateAnalog(Left(buffer, 7)) ' Analog
                 Else
                     Call updateOutput(Left(buffer, 4)) ' Output
@@ -922,7 +988,7 @@ Private Sub updateOutput(data As String)
 End Sub
 
 Private Sub updateAnalog(data As String)
-Dim searchPrefix As String
+    Dim searchPrefix As String
     Dim i As Integer
     Dim foundIndex As Integer
 
@@ -945,6 +1011,34 @@ Dim searchPrefix As String
     If foundIndex <> -1 Then
         ' Atualiza o item no ListBox com o valor recebido
         lstAnalog.List(foundIndex) = data
+    End If
+
+End Sub
+
+Private Sub updateVariable(data As String)
+    Dim searchPrefix As String
+    Dim i As Integer
+    Dim foundIndex As Integer
+
+    ' Extrai a parte antes do ":" para usar como prefixo de busca
+    searchPrefix = Left(data, InStr(data, ":"))
+
+    ' Define um índice inicial para indicar que nenhum item foi encontrado
+    foundIndex = -1
+
+    ' Procura no ListBox pelo item que começa com o prefixo
+    For i = 0 To lstVariable.ListCount - 1
+        If Left(lstVariable.List(i), Len(searchPrefix)) = searchPrefix Then
+            ' Encontrou o item correspondente
+            foundIndex = i
+            Exit For
+        End If
+    Next i
+
+    ' Verifica se o item foi encontrado
+    If foundIndex <> -1 Then
+        ' Atualiza o item no ListBox com o valor recebido
+        lstVariable.List(foundIndex) = data
     End If
 
 End Sub
@@ -988,6 +1082,7 @@ Private Sub cmdReset_Click()
     lstOutput.Clear
     lstAnalog.Clear
     lstPwm.Clear
+    lstVariable.Clear
     txtInformacao.Text = Empty
     
     ' Lista de Input
@@ -1020,6 +1115,11 @@ Private Sub cmdReset_Click()
     lstPwm.AddItem "07:0"
     lstPwm.AddItem "10:0"
     lstPwm.AddItem "11:0"
+    
+    ' Lista Variable
+    For i = 0 To 9
+        lstVariable.AddItem "V" & i & ":"
+    Next i
     
 End Sub
 

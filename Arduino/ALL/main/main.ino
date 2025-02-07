@@ -3,8 +3,6 @@
   Autor: DALÇÓQUIO AUTOMAÇÃO
   Projeto: Supervisório em Visual Basic para Arduino Uno
   Exemplo: Input, Output, Analog e Pwm
-  Descrição: Recebe o valor do supervisório listbox Input, 
-  para alterar o estado atual de uma entrada digital.
  
 */
 
@@ -44,10 +42,16 @@ void loop() {
       }
     }
 
+    // Tratamento para Variable
+    static bool value_variable;
+    value_variable = !value_variable;
+    Serial.println("V0:" + String(value_variable));
+    delay(100);
+
     // Tratamento para Analog
     int value_analog = analogRead(A0);
     Serial.println("A0:" + String(value_analog));
-    delay(1000);
+    delay(100);
 
     // Tratamento para Output
     digitalWrite(13, HIGH);

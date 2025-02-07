@@ -1,0 +1,36 @@
+////////////////////////////////////////////////////////
+// INPUT
+if(Serial.available()){
+  String receivedData = Serial.readStringUntil('\n');
+  receivedData.trim();
+  if (receivedData == "02:1") {
+    digitalWrite(2,HIGH);
+  }
+}
+
+////////////////////////////////////////////////////////
+// OUTPUT
+Serial.println("02:0"); // 0 ou 1
+
+////////////////////////////////////////////////////////
+// ANALOG
+int value_analog = analogRead(A0);
+Serial.println("A0:" + String(value_analog));
+
+////////////////////////////////////////////////////////
+// PWM
+if (Serial.available() > 0) {
+  String receivedData = Serial.readStringUntil('\n');
+  receivedData.trim();
+  int index = receivedData.indexOf(':');
+  String pinStr = receivedData.substring(0, index);
+  int pin = pinStr.toInt();
+  String pwmStr = receivedData.substring(index + 1);
+  int pwm_value = pwmStr.toInt();
+  analogWrite(pin, pwm_value);
+}
+
+////////////////////////////////////////////////////////
+// VARIABLE
+int value_variable = 0;
+Serial.println("V0:" + String(value_variable));

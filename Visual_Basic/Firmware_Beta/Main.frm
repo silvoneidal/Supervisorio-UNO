@@ -847,7 +847,7 @@ On Error GoTo Erro
             ' Atualiza valores de Output e Analog
             If Mid(buffer, 3, 1) = ":" Then
                 If Mid(buffer, 1, 1) = "A" Then
-                    Call updateAnalog(buffer) ' Analog
+                    Call updateAnalog(Left(buffer, 7)) ' Analog
                 Else
                     Call updateOutput(Left(buffer, 4)) ' Output
                 End If
