@@ -530,6 +530,7 @@ Private Declare Sub Sleep Lib "kernel32.dll" (ByVal dwMilliseconds As Long)
 
 Dim Titulo As String
 Dim index As Integer
+Dim buffer As String
 Dim pwm_value As Integer
 
 Private Sub Form_Load()
@@ -830,7 +831,6 @@ Private Sub ClearOtherListBoxesSelection(CurrentListBox As String)
 End Sub
 
 Private Sub MSComm1_OnComm()
-    Dim data As String
     
 On Error GoTo Erro
 
@@ -839,15 +839,23 @@ On Error GoTo Erro
     Select Case MSComm1.CommEvent
         Case comEvReceive
             ' Recebe os dados da serial
+            Dim data As String
             data = MSComm1.Input
+            buffer = buffer + data
+            Debug.Print buffer
             
             ' Atualiza valores de Output e Analog
-            If Mid(data, 3, 1) = ":" Then
-                If Mid(data, 1, 1) = "A" Then
-                    Call updateAnalog(data) ' Analog
+            If Mid(buffer, 3, 1) = ":" Then
+                If Mid(buffer, 1, 1) = "A" Then
+                    Call updateAnalog(buffer) ' Analog
                 Else
-                    Call updateOutput(data) ' Input
+                    Call updateOutput(Left(buffer, 4)) ' Output
                 End If
+            End If
+            
+            ' Limpa o buffer se receber uma nova linha
+            If Right(buffer, 1) = vbLf Then
+                buffer = Empty
             End If
             
             ' Atualiza terminal serial
